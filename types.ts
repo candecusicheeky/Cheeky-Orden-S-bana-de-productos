@@ -23,8 +23,8 @@ export interface CsvProduct {
   'IMAGEN CARGADA': 'SI' | 'NO';
   'COLOR': string;
   'TALLE':string;
-  'PRICE_CENTS'?: number; // Assuming this column can exist
-  'NEW IN'?: string; // date string or '#N/A'
+  'PRICE_CENTS'?: number;
+  'NEW IN'?: string;
   'FOTO CAMPAÑA'?: string;
   'FOTO MODELO'?: string;
   'VIDEO'?: string;
@@ -59,8 +59,9 @@ export interface ProductVariant {
   campaignName?: string;
   hasStock: boolean;
   hasPrice: boolean;
+  hasImage: boolean;
+  sortReason?: string;
   
-  // Pre-calculated fields for performance optimization
   normalizedColor: string;
   normalizedType: string;
   vibe: string;
@@ -93,4 +94,28 @@ export enum SortLogic {
 export interface SortingRules {
   rowSequencing: RowRule[];
   logic: SortLogic;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  file?: {
+    name: string;
+    size: string;
+    rows: number;
+  };
+}
+
+export interface ChatSession {
+  id: string;
+  title: string;
+  messages: ChatMessage[];
+}
+
+// Added interface for ReplacementModal categorization logic
+export interface ReplacementCategory {
+  id: string;
+  title: string;
+  items: ProductVariant[];
 }
