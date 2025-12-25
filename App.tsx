@@ -207,7 +207,7 @@ const HomePage: FC<{
             {feedbackMessage && <div className="bg-emerald-50 text-emerald-600 px-6 py-3 rounded-2xl border border-emerald-100 text-[11px] font-bold animate-fade-in">{feedbackMessage}</div>}
 
             {products.length > 0 ? (
-                <div className="grid grid-cols-2 min-[750px]:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 min-[991px]:grid-cols-4 gap-4">
                     {products.map(product => (
                        <div key={product.id} onDragOver={(e) => { e.preventDefault(); if (draggedItem && draggedItem.id !== product.id) setDropTargetId(product.id); }} onDragLeave={() => setDropTargetId(null)} onDrop={(e) => { e.preventDefault(); onDrop(product); setDropTargetId(null); }} className={`rounded-2xl transition-all ${dropTargetId === product.id ? 'ring-2 ring-emerald-400 ring-offset-4 scale-105 z-10 shadow-xl' : ''}`}>
                             <ProductCard product={product} onReplace={onReplaceProduct} onDragStart={onDragStart} onDragEnd={() => setDropTargetId(null)} isDragging={draggedItem?.id === product.id} />
@@ -466,7 +466,6 @@ export default function App() {
                     <li><strong>XML (Catálogo)</strong>: Contiene descripciones y enlaces de imágenes base del catálogo de Cheeky.</li>
                     <li><strong>CSV (Métricas)</strong>: Esencial para el ranking y stock. Debe contener columnas como 'Grupo (Fórmula)', 'Ranking Analytics', 'STOCK ECOMMERCE', 'Edad', 'Género' y 'Tipo Prenda'.</li>
                 </ul>
-                <p class="text-xs font-bold bg-slate-50 p-3 rounded-lg border border-slate-100 italic">Nota: El ancho de los botones de carga se mantiene constante (180px) para una interfaz limpia, independientemente del nombre del archivo cargado.</p>
             </section>
             
             <section class="mb-8">
